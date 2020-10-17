@@ -7,7 +7,7 @@ if [ -n "$NEEDS_MINIO" ]; then
         OS="$TRAVIS_OS_NAME"
     fi
 
-    wget https://dl.min.io/server/minio/release/${OS}-amd64/minio
+    wget https://dl.min.io/server/minio/release/${OS}-arm64/minio
     chmod +x minio
     ./minio server MinioData &
 fi
