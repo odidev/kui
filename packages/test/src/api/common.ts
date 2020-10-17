@@ -159,7 +159,7 @@ const prepareElectron = (popup: string[]) => {
 
     const userDataDir = join(TMP, `kui-profile-${process.env.PORT_OFFSET}`)
     opts.chromeDriverArgs.push(`--user-data-dir=${userDataDir}`)
-
+    opts.chromeDriverArgs.push('--headless')
     console.log(`Using chromedriver port ${opts['port']}`)
     console.log(`Using chromedriver user-data-dir ${userDataDir}`)
   }
