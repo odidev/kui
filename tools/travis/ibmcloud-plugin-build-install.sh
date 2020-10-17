@@ -3,7 +3,7 @@ SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 cd "$SCRIPTDIR"/../../tools/go/ibmcloud
 
 echo "Installing Go Stable"
-eval "$(gimme stable)";
+eval "$(gimme 1.15)";
 
 echo "Building ibmcloud kui binary"
 make
