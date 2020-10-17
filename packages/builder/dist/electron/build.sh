@@ -290,12 +290,12 @@ function linux {
 
 	# we want the electron app name to be PRODUCT_NAME, but the app to be in <CLIENT_NAME>-<platform>-<arch>
 	if [ "${PRODUCT_NAME}" != "${CLIENT_NAME}" ]; then
-	    rm -rf "$BUILDDIR/${CLIENT_NAME}-linux-x64/"
-	    mv "$BUILDDIR/${PRODUCT_NAME}-linux-x64/" "$BUILDDIR/${CLIENT_NAME}-linux-x64/"
+	    rm -rf "$BUILDDIR/${CLIENT_NAME}-linux-arm64/"
+	    mv "$BUILDDIR/${PRODUCT_NAME}-linux-arm64/" "$BUILDDIR/${CLIENT_NAME}-linux-arm64/"
 	fi
 
         echo "Add kubectl-kui to electron build linux"
-        (cd "$BUILDDIR/${CLIENT_NAME}-linux-x64" && touch kubectl-kui && chmod +x kubectl-kui \
+        (cd "$BUILDDIR/${CLIENT_NAME}-linux-arm64" && touch kubectl-kui && chmod +x kubectl-kui \
           && echo '#!/usr/bin/env sh
 export KUI_POPUP_WINDOW_RESIZE=true
 SCRIPTDIR=$(cd $(dirname "$0") && pwd)
@@ -303,7 +303,7 @@ SCRIPTDIR=$(cd $(dirname "$0") && pwd)
 
         if [ -z "$NO_INSTALLER" ]; then
             echo "Zip build for linux"
-            (cd $BUILDDIR && zip -q -r "${CLIENT_NAME}-linux-x64" "${CLIENT_NAME}-linux-x64" -x \*~) &
+            (cd $BUILDDIR && zip -q -r "${CLIENT_NAME}-linux-arm64" "${CLIENT_NAME}-linux-arm64" -x \*~) &
             LINUX_ZIP_PID=$!
 
             echo "DEB build for linux"
