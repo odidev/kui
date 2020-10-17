@@ -11,7 +11,7 @@ mkdir -p ~/.kube
 # Download and install misc packages and utilities
 pushd /tmp
   # Download and install kubectl
-  (curl -LO https://storage.googleapis.com/kubernetes-release/release/v${TRAVIS_KUBE_VERSION}/bin/linux/amd64/kubectl && \
+  (curl -LO https://storage.googleapis.com/kubernetes-release/release/v${TRAVIS_KUBE_VERSION}/bin/linux/arm64/kubectl && \
        sudo cp kubectl /usr/local/bin/kubectl && \
        sudo chmod a+rx /usr/local/bin/kubectl) &
 
@@ -22,10 +22,10 @@ pushd /tmp
       (sudo apt-get update && sudo apt install -y socat) &
 
       PLATFORM=`uname | tr '[:upper:]' '[:lower:]'`
-      echo "Downloading this helm: https://storage.googleapis.com/kubernetes-helm/helm-v${TRAVIS_HELM_VERISON}-${PLATFORM}-amd.tar.gz"
-      curl -L "https://storage.googleapis.com/kubernetes-helm/helm-v${TRAVIS_HELM_VERSION}-${PLATFORM}-amd64.tar.gz" | tar zxf -
-      sudo cp ${PLATFORM}-amd64/helm /usr/local/bin
-      sudo cp ${PLATFORM}-amd64/tiller /usr/local/bin
+      echo "Downloading this helm: https://storage.googleapis.com/kubernetes-helm/helm-v${TRAVIS_HELM_VERISON}-${PLATFORM}-arm.tar.gz"
+      curl -L "https://storage.googleapis.com/kubernetes-helm/helm-v${TRAVIS_HELM_VERSION}-${PLATFORM}-arm64.tar.gz" | tar zxf -
+      sudo cp ${PLATFORM}-arm64/helm /usr/local/bin
+      sudo cp ${PLATFORM}-arm64/tiller /usr/local/bin
       sudo chmod +x /usr/local/bin/{helm,tiller}
   fi
 
@@ -38,8 +38,8 @@ pushd /tmp
       sudo chmod +x /usr/local/bin/oc
       oc version
 
-      echo "Downloading this odo: https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-${PLATFORM}-amd64"
-      sudo sh -c "curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-${PLATFORM}-amd64 -o /usr/local/bin/odo"
+      echo "Downloading this odo: https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-${PLATFORM}-arm64"
+      sudo sh -c "curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-${PLATFORM}-arm64 -o /usr/local/bin/odo"
       sudo chmod +x /usr/local/bin/odo
       odo version
   fi
